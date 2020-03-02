@@ -7,12 +7,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import LoginModal from '../components/login'
+import { initStore, GlobalProvider } from '../store'
 
 const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
   },
 }))
+
+const store = initStore()
 
 const Home = () => {
   const styles = useStyles()
@@ -26,18 +29,20 @@ const Home = () => {
     setOpen(false)
   }
   return (
-    <>
+    <GlobalProvider store={store}>
       <CssBaseline />
-      <LoginModal isOpen={isOpen} handleClose={handleClose}/>
+      <LoginModal isOpen={isOpen} handleClose={handleClose} />
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={styles.title}>
             Autopožičovňa
           </Typography>
-          <Button color="inherit" onClick={handleOpen}>Prihlásiť sa</Button>
+          <Button color="inherit" onClick={handleOpen}>
+            Prihlásiť sa
+          </Button>
         </Toolbar>
       </AppBar>
-    </>
+    </GlobalProvider>
   )
 }
 

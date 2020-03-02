@@ -50,6 +50,7 @@ module.exports = {
       },
     ],
     'react/state-in-constructor': ['error', 'never'],
+    'class-methods-use-this': 'off'
   },
 
   plugins: ['prettier'],

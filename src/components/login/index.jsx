@@ -10,6 +10,8 @@ import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import Button from '@material-ui/core/Button'
 
+import { withGlobalStore } from '../../store'
+
 const useStyles = makeStyles(theme => ({
   form: {
     position: 'absolute',
@@ -29,13 +31,18 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const LoginModal = ({ isOpen, handleClose }) => {
+const LoginModal = ({ store, isOpen, handleClose }) => {
   const styles = useStyles()
   const [values, setValues] = useState({
     name: '',
     password: '',
     showPassword: false,
   })
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    store.login()
+  }
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
@@ -47,7 +54,7 @@ const LoginModal = ({ isOpen, handleClose }) => {
 
   return (
     <Modal open={isOpen} onClose={handleClose} className={styles.modal}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <FormControl fullWidth>
           <InputLabel>Prihlasovacie meno</InputLabel>
           <Input value={values.name} onChange={handleChange('name')} />
@@ -68,6 +75,7 @@ const LoginModal = ({ isOpen, handleClose }) => {
           />
         </FormControl>
         <Button
+          type="submit"
           variant="outlined"
           color="primary"
           className={styles.saveButton}
@@ -79,4 +87,4 @@ const LoginModal = ({ isOpen, handleClose }) => {
   )
 }
 
-export default LoginModal
+export default withGlobalStore(LoginModal)
