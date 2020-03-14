@@ -12,6 +12,8 @@ import {
   NavLink as RouterLink,
 } from 'react-router-dom'
 import Link from '@material-ui/core/Link'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DayJSProvider from '@date-io/dayjs'
 
 import AboutUs from './about-us'
 import CarService from './car-service'
@@ -19,6 +21,7 @@ import LoginModal from '../components/login'
 import { initStore, GlobalProvider } from '../store'
 import Home from './home'
 import './styles.css'
+import CarInfo from './car-info'
 
 const useStyles = makeStyles(theme => ({
   logo: {
@@ -58,61 +61,66 @@ const App = () => {
   }
   return (
     <GlobalProvider store={store}>
-      <CssBaseline />
-      <LoginModal isOpen={isOpen} handleClose={handleClose} />
-      <Router>
-        <AppBar position="static">
-          <Toolbar>
-            <div className={styles.logo}>
-              <Typography variant="h6">LOGO</Typography>
-            </div>
-            <nav className={styles.navigation}>
-              <Link
-                activeClassName={styles.linkSelected}
-                component={RouterLink}
-                to="/"
-                exact
-              >
-                Domov
-              </Link>
+      <MuiPickersUtilsProvider utils={DayJSProvider}>
+        <CssBaseline />
+        <LoginModal isOpen={isOpen} handleClose={handleClose} />
+        <Router>
+          <AppBar position="static">
+            <Toolbar>
+              <div className={styles.logo}>
+                <Typography variant="h6">LOGO</Typography>
+              </div>
+              <nav className={styles.navigation}>
+                <Link
+                  activeClassName={styles.linkSelected}
+                  component={RouterLink}
+                  to="/"
+                  exact
+                >
+                  Domov
+                </Link>
 
-              <Link
-                activeClassName={styles.linkSelected}
-                component={RouterLink}
-                to="/car-service"
-                exact
-              >
-                Autopožičovňa
-              </Link>
+                <Link
+                  activeClassName={styles.linkSelected}
+                  component={RouterLink}
+                  to="/car-service"
+                  exact
+                >
+                  Autopožičovňa
+                </Link>
 
-              <Link
-                activeClassName={styles.linkSelected}
-                component={RouterLink}
-                to="/about"
-                exact
-              >
-                O nás
-              </Link>
-            </nav>
-            <div className={styles.login}>
-              <Button color="inherit" onClick={handleOpen}>
-                Prihlásiť sa
-              </Button>
-            </div>
-          </Toolbar>
-        </AppBar>
-        <Switch>
-          <Route exact path="/car-service">
-            <CarService />
-          </Route>
-          <Route exact path="/about">
-            <AboutUs />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+                <Link
+                  activeClassName={styles.linkSelected}
+                  component={RouterLink}
+                  to="/about"
+                  exact
+                >
+                  O nás
+                </Link>
+              </nav>
+              <div className={styles.login}>
+                <Button color="inherit" onClick={handleOpen}>
+                  Prihlásiť sa
+                </Button>
+              </div>
+            </Toolbar>
+          </AppBar>
+          <Switch>
+            <Route exact path="/car-service">
+              <CarService />
+            </Route>
+            <Route exact path="/about">
+              <AboutUs />
+            </Route>
+            <Route exact path="/car/:carId">
+              <CarInfo />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </MuiPickersUtilsProvider>
     </GlobalProvider>
   )
 }
