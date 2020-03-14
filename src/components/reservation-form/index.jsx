@@ -7,6 +7,10 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Slider from 'react-slick'
+
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,14 +25,42 @@ const useStyles = makeStyles(theme => ({
   submit: {
     textAlign: 'right',
   },
+  slide: {
+    'marginLeft': '30%',
+    'marginRight': '30%',
+    'marginBottom': theme.spacing(3),
+    '& img': {
+      width: '100%',
+    },
+  },
 }))
 
 const ReservationForm = () => {
   const styles = useStyles()
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }
 
   return (
     <Container fixed className={styles.root}>
       <Paper elevation={3} className={styles.paper}>
+        <div className={styles.slide}>
+          <Slider {...settings}>
+            <div>
+              <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2020/Civic-Sedan/non-VLP/Global-Nav/Updated-MY20-Civic-Sedan-non-VLP-nav-2x.png" />
+            </div>
+            <div>
+              <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2020/Civic-Sedan/non-VLP/Global-Nav/Updated-MY20-Civic-Sedan-non-VLP-nav-2x.png" />
+            </div>
+            <div>
+              <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2020/Civic-Sedan/non-VLP/Global-Nav/Updated-MY20-Civic-Sedan-non-VLP-nav-2x.png" />
+            </div>
+          </Slider>
+        </div>
         <Typography className={styles.formTitle} component="h1" variant="h4">
           Rezervačný formulár
         </Typography>

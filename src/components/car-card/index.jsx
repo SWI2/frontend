@@ -9,6 +9,8 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import { useHistory } from 'react-router-dom'
 
+import './styles.css'
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
