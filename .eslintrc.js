@@ -4,6 +4,8 @@ const a11yOff = Object.keys(require('eslint-plugin-jsx-a11y').rules)
 module.exports = {
   extends: ['airbnb', 'prettier', 'prettier/react'],
 
+  parser: 'babel-eslint',
+
   env: {
     browser: true,
   },
