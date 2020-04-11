@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import Button from '@material-ui/core/Button'
+import { useHistory } from 'react-router-dom'
 
 import { withGlobalStore } from '../../store'
 
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const LoginModal = ({ store, isOpen, handleClose }) => {
+  const history = useHistory()
   const styles = useStyles()
   const [values, setValues] = useState({
     name: '',
@@ -39,9 +41,11 @@ const LoginModal = ({ store, isOpen, handleClose }) => {
     showPassword: false,
   })
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    store.login()
+    await store.login()
+    history.push('/admin')
+    handleClose()
   }
 
   const handleChange = prop => event => {

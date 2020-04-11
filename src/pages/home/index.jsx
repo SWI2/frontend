@@ -9,15 +9,14 @@ import { useHistory } from 'react-router-dom'
 import Image from './main.jpg'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    height: 'calc(100% - 64px)',
+  container: {
+    height: '100%',
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-
   main: {
     background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${Image}) no-repeat center`,
     backgroundSize: 'cover',
@@ -42,7 +41,7 @@ function Home() {
   }
 
   return (
-    <Grid className={classes.root} container>
+    <Grid className={classes.container} container>
       <Grid item xs={12}>
         <div className={classes.main}>
           <Container className={classes.slider}>
