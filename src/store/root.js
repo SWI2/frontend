@@ -10,6 +10,8 @@ class Root {
 
   @observable alerts = new Alerts()
 
+  @observable token = null
+
   constructor() {
     this.loadCars()
   }
@@ -22,9 +24,20 @@ class Root {
   }
 
   @action
-  login() {
+  async login({ email, password }) {
     // login action here
+    const {
+      data: { token },
+    } = await apiRequest('/jwt', {
+      method: 'POST',
+      body: {
+        email,
+        password,
+      },
+    })
+
     this.isLoggedIn = true
+    this.token = token
   }
 
   @action

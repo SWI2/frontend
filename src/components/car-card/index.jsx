@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import './styles.css'
 
@@ -23,9 +23,6 @@ const useStyles = makeStyles({
 export default function CarCard({ id, image, title }) {
   const classes = useStyles()
   const history = useHistory()
-  const params = useParams()
-
-  console.log(params)
 
   function handleClick() {
     history.push(`/car/${id}`)

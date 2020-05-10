@@ -60,7 +60,7 @@ const CarInfo = ({ store }) => {
         </Typography>
       </Jumbotron>
 
-      <ReservationForm />
+      <ReservationForm images={[car.thumbnail_url]} />
     </>
   )
 }

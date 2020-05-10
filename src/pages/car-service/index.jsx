@@ -63,7 +63,11 @@ const CarService = ({ store }) => {
                   })
                   .map(el => (
                     <Grid key={el.id} item xs={12} sm={6} md={3}>
-                      <CarCard id={el.id} title={el.model.name} image={el.thumbnail_url} />
+                      <CarCard
+                        id={el.id}
+                        title={el.model.name}
+                        image={el.thumbnail_url}
+                      />
                     </Grid>
                   ))
               : 'Loading data'}
