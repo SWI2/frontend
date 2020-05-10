@@ -1,7 +1,7 @@
 // Module taken from https://github.com/oacore/dashboard/blob/master/api/index.js
 import { NetworkError } from './errors'
 
-const API_URL = 'https://sw2-project-backend.herokuapp.com/api/'
+const API_URL = 'https://sw2-project-backend.herokuapp.com/api'
 
 const prepareUrl = (pathname, base = API_URL) => {
   const url = /^\w+:\/\//.test(pathname) ? pathname : `${base}${pathname}`
@@ -48,7 +48,7 @@ const prepareRequest = init => {
   const body = prepareBody({ ...init, method: request.method })
   if (body != null) request.body = body
 
-  request.credentials = 'include'
+  // request.credentials = 'include'
 
   return { ...init, ...request }
 }
