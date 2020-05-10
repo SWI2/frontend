@@ -5,7 +5,9 @@ import PersonIcon from '@material-ui/icons/Person'
 import LocalGasStationIcon from '@material-ui/icons/LocalGasStation'
 import SettingsIcon from '@material-ui/icons/Settings'
 import SpeedIcon from '@material-ui/icons/Speed'
+import { useParams } from 'react-router-dom'
 
+import { withGlobalStore } from '../../store'
 import ReservationForm from '../../components/reservation-form'
 import Jumbotron from '../../components/jumbotron'
 import IconWithText from '../../components/icon-with-text'
@@ -29,9 +31,15 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const CarInfo = () => {
+const CarInfo = ({ store }) => {
   const styles = useStyles()
+  const { carId } = useParams()
 
+  if (store.cars === null) return 'Loading'
+
+  const car = store.cars.find(el => el.id === Number(carId))
+
+  if (!car) return 'car not found'
   return (
     <>
       <Jumbotron>
@@ -39,19 +47,22 @@ const CarInfo = () => {
           Tesla Model 3
         </Typography>
         <div className={styles.carFeatures}>
-          <IconWithText text="5" icon={<PersonIcon />} />
-          <IconWithText text="elektrina" icon={<LocalGasStationIcon />} />
-          <IconWithText text="automatika" icon={<SettingsIcon />} />
-          <IconWithText text="250 kW" icon={<SpeedIcon />} />
+          <IconWithText
+            text={car.model.number_of_seats}
+            icon={<PersonIcon />}
+          />
+          <IconWithText text={car.model.fuel} icon={<LocalGasStationIcon />} />
+          <IconWithText text={car.model.gear} icon={<SettingsIcon />} />
+          <IconWithText text={`${car.model.power} kW`} icon={<SpeedIcon />} />
         </div>
         <Typography component="p" variant="h6">
-          3400 Kč / 24 hod
+          {car.pricing_per_day} Kč / 24 hod
         </Typography>
       </Jumbotron>
 
-      <ReservationForm />
+      <ReservationForm images={[car.thumbnail_url]} />
     </>
   )
 }
 
-export default CarInfo
+export default withGlobalStore(CarInfo)

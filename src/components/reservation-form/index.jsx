@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ReservationForm = () => {
+const ReservationForm = ({ images }) => {
   const styles = useStyles()
   const settings = {
     dots: true,
@@ -50,15 +50,11 @@ const ReservationForm = () => {
       <Paper elevation={3} className={styles.paper}>
         <div className={styles.slide}>
           <Slider {...settings}>
-            <div>
-              <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2020/Civic-Sedan/non-VLP/Global-Nav/Updated-MY20-Civic-Sedan-non-VLP-nav-2x.png" />
-            </div>
-            <div>
-              <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2020/Civic-Sedan/non-VLP/Global-Nav/Updated-MY20-Civic-Sedan-non-VLP-nav-2x.png" />
-            </div>
-            <div>
-              <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2020/Civic-Sedan/non-VLP/Global-Nav/Updated-MY20-Civic-Sedan-non-VLP-nav-2x.png" />
-            </div>
+            {images.map(image => (
+              <div>
+                <img src={image} />
+              </div>
+            ))}
           </Slider>
         </div>
         <Typography className={styles.formTitle} component="h1" variant="h4">
