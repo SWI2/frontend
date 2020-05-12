@@ -44,7 +44,7 @@ const CarInfo = ({ store }) => {
     <>
       <Jumbotron>
         <Typography component="h1" variant="h2">
-          Tesla Model 3
+          {car.model.name}
         </Typography>
         <div className={styles.carFeatures}>
           <IconWithText
