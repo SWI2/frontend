@@ -40,6 +40,7 @@ const CarInfo = ({ store }) => {
   const car = store.cars.find(el => el.id === Number(carId))
 
   if (!car) return 'car not found'
+
   return (
     <>
       <Jumbotron>
@@ -60,7 +61,7 @@ const CarInfo = ({ store }) => {
         </Typography>
       </Jumbotron>
 
-      <ReservationForm images={[car.thumbnail_url]} />
+      <ReservationForm images={[car.thumbnail_url]} carId={carId} />
     </>
   )
 }
