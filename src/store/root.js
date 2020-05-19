@@ -45,7 +45,7 @@ class Root {
     // logout action here
     this.isLoggedIn = false
     this.alerts.alerts.push({
-      message: 'Boli ste úspešne odhlásený',
+      message: 'Boli ste úspešne odhlásení.',
     })
   }
 
@@ -54,6 +54,10 @@ class Root {
       data: { data },
     } = await apiRequest('/cars')
     this.cars = data
+  }
+
+  async reserveCar(payload) {
+    await apiRequest('/reservation', { method: 'POST', body: payload })
   }
 }
 

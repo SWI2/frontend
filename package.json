@@ -9,7 +9,7 @@
     "@material-ui/lab": "^4.0.0-alpha.45",
     "@material-ui/pickers": "^3.2.10",
     "customize-cra": "^0.9.1",
-    "dayjs": "^1.8.22",
+    "dayjs": "^1.8.27",
     "history": "^4.10.1",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
