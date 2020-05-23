@@ -8,7 +8,7 @@ After cloning run these commands:
 
 ```sh
 npm install      # to install all dependencies
-npm run dev      # to start simple development server
+npm run start    # to start simple development server
 ```
 
 Open [localhost:3000](http://localhost:3000) to preview.
