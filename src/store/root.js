@@ -10,6 +10,8 @@ class Root {
 
   @observable alerts = new Alerts()
 
+  @observable reservations = null
+
   @observable token = null
 
   constructor() {
@@ -58,6 +60,19 @@ class Root {
 
   async reserveCar(payload) {
     await apiRequest('/reservation', { method: 'POST', body: payload })
+  }
+
+  async loadReservations() {
+    if (!this.isLoggedIn) {
+      return
+    }
+    await apiRequest(
+      '/reservation', 
+      { 
+        method: 'GET', 
+        body: payload 
+      }
+    )
   }
 }
 
