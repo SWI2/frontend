@@ -102,16 +102,26 @@ const Navigation = ({ store }) => {
     setMobileOpen(!mobileOpen)
   }
 
+  const drawerItemSelected = (e) => {
+    console.log(e)
+  }
+
   const drawer = (
     <div>
       <div className={styles.toolbar} />
       <Divider />
       <List>
+        <ListItem button onClick={drawerItemSelected}>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Rezervace" />
+        </ListItem>
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Prenájom vozidla" />
+          <ListItemText primary="Vozidla" />
         </ListItem>
       </List>
     </div>
