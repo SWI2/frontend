@@ -24,7 +24,7 @@ import Drawer from '@material-ui/core/Drawer'
 
 import { withGlobalStore } from '../../store'
 import Home from '../../pages/home'
-import Admin from '../../pages/admin'
+import ReservationList from '../../pages/reservation-list'
 import PrivateRoute from '../protected-route'
 import CarInfo from '../../pages/car-info'
 import AboutUs from '../../pages/about-us'
@@ -233,7 +233,7 @@ const Navigation = ({ store }) => {
                   </Drawer>
                 </Hidden>
               </nav>
-              <Admin />
+              <ReservationList />
             </PrivateRoute>
             <Route exact path="/">
               <Home />

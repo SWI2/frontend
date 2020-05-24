@@ -27,9 +27,8 @@ class Root {
 
   @action
   async login({ email, password }) {
-    // login action here
     const {
-      data: { token },
+      data: { data },
     } = await apiRequest('/jwt', {
       method: 'POST',
       body: {
@@ -37,14 +36,12 @@ class Root {
         password,
       },
     })
-
     this.isLoggedIn = true
-    this.token = token
+    this.token = data.token
   }
 
   @action
   logout() {
-    // logout action here
     this.isLoggedIn = false
     this.alerts.alerts.push({
       message: 'Boli ste úspešne odhlásení.',
@@ -66,13 +63,10 @@ class Root {
     if (!this.isLoggedIn) {
       return
     }
-    await apiRequest(
-      '/reservation', 
-      { 
-        method: 'GET', 
-        body: payload 
-      }
-    )
+    const {
+      data: { data }
+    } = await apiRequest('/reservation',  {  headers: { 'Authorization': `Bearer ${this.token}` } })
+    this.reservations = data
   }
 }
 
