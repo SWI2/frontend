@@ -71,7 +71,7 @@ const CarService = ({ store }) => {
                     </Grid>
                   ))
               : 'Loading data'}
-          </Grid> 
+          </Grid>
         </div>
       </Container>
     </>

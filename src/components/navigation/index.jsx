@@ -1,8 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -14,7 +10,6 @@ import PrivateRoute from '../protected-route'
 import CarInfo from '../../pages/car-info'
 import AboutUs from '../../pages/about-us'
 import CarService from '../../pages/car-service'
-
 import LoginModal from '../login'
 import CarRentalAppBar from '../car-rental-appbar'
 import CarRentalDrawer from '../car-rental-drawer'
@@ -73,10 +68,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Navigation = (props) => {
-
-  const { store } = props
-
+const Navigation = () => {
   const styles = useStyles()
   const [isOpen, setOpen] = useState(false)
   const handleOpen = () => {
@@ -97,9 +89,9 @@ const Navigation = (props) => {
     <>
       <Router>
         <div className={styles.root}>
-          <CarRentalAppBar 
-            onDrawerIconSelect={ handleDrawerToggle }
-            onLoginSelect={ handleOpen }
+          <CarRentalAppBar
+            onDrawerIconSelect={handleDrawerToggle}
+            onLoginSelect={handleOpen}
           />
           <Switch>
             <Route exact path="/">
@@ -115,16 +107,16 @@ const Navigation = (props) => {
               <CarInfo />
             </Route>
             <PrivateRoute exact path="/admin/reservation">
-              <CarRentalDrawer 
-                mobileOpen={ mobileOpen }
-                onDrawerToggle={ handleDrawerToggle }
+              <CarRentalDrawer
+                mobileOpen={mobileOpen}
+                onDrawerToggle={handleDrawerToggle}
               />
               <ReservationList />
             </PrivateRoute>
             <PrivateRoute exact path="/admin/reservation/:reservationId">
-              <CarRentalDrawer 
-                mobileOpen={ mobileOpen }
-                onDrawerToggle={ handleDrawerToggle }
+              <CarRentalDrawer
+                mobileOpen={mobileOpen}
+                onDrawerToggle={handleDrawerToggle}
               />
               <ReservationInfo />
             </PrivateRoute>

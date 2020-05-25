@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Divider from '@material-ui/core/Divider'
@@ -26,9 +25,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const CarRentalDrawer = (props) => {
-
+const CarRentalDrawer = props => {
   const styles = useStyles()
+
+  const { mobileOpen } = props
 
   const onDrawerToggle = () => {
     props.onDrawerToggle()
@@ -62,8 +62,8 @@ const CarRentalDrawer = (props) => {
           <Drawer
             variant="temporary"
             anchor="left"
-            open={ props.mobileOpen }
-            onClose={ onDrawerToggle }
+            open={mobileOpen}
+            onClose={onDrawerToggle}
             classes={{
               paper: styles.drawerPaper,
             }}
@@ -71,7 +71,7 @@ const CarRentalDrawer = (props) => {
               keepMounted: true,
             }}
           >
-            { drawerItems }
+            {drawerItems}
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -82,7 +82,7 @@ const CarRentalDrawer = (props) => {
             variant="permanent"
             open
           >
-            { drawerItems }
+            {drawerItems}
           </Drawer>
         </Hidden>
       </nav>

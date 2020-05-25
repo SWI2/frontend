@@ -60,12 +60,13 @@ class Root {
   }
 
   async loadReservations() {
-    if (!this.isLoggedIn) {
-      return
-    }
+    if (!this.isLoggedIn) return
+
     const {
-      data: { data }
-    } = await apiRequest('/reservation',  {  headers: { 'Authorization': `Bearer ${this.token}` } })
+      data: { data },
+    } = await apiRequest('/reservation', {
+      headers: { Authorization: `Bearer ${this.token}` },
+    })
     this.reservations = data
   }
 }

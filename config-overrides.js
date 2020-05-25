@@ -1,7 +1,7 @@
 const {
   addDecoratorsLegacy,
   disableEsLint,
-  override
+  override,
 } = require('customize-cra')
 
 module.exports = override(addDecoratorsLegacy(), disableEsLint())

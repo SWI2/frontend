@@ -52,7 +52,8 @@ module.exports = {
       },
     ],
     'react/state-in-constructor': ['error', 'never'],
-    'class-methods-use-this': 'off'
+    'class-methods-use-this': 'off',
+    'camelcase': 'off',
   },
 
   plugins: ['prettier'],

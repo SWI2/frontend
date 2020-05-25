@@ -1,10 +1,11 @@
 import React from 'react'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText';
+import ListItemText from '@material-ui/core/ListItemText'
 import { useHistory } from 'react-router-dom'
 
 export default function ReservationListItem(props) {
-  const { id, customer, rent_date, return_date } = props.reservation
+  const { reservation } = props
+  const { id, customer, rent_date, return_date } = reservation
   const history = useHistory()
 
   function handleClick() {
@@ -12,14 +13,11 @@ export default function ReservationListItem(props) {
   }
 
   return (
-    <ListItem
-      button
-      onClick={handleClick}
-    >
-        <ListItemText
-            primary={`Jméno zákazníka: ${customer.name}`}
-            secondary={`Od: ${rent_date} Do: ${return_date}`}
-        />
+    <ListItem button onClick={handleClick}>
+      <ListItemText
+        primary={`Jméno zákazníka: ${customer.name}`}
+        secondary={`Od: ${rent_date} Do: ${return_date}`}
+      />
     </ListItem>
   )
 }

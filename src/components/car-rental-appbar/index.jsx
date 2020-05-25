@@ -1,6 +1,4 @@
-import {
-  NavLink as RouterLink,
-} from 'react-router-dom'
+import { NavLink as RouterLink } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -52,9 +50,10 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
 }))
 
-const CarRentalAppBar = (props) => {
-
+const CarRentalAppBar = props => {
   const styles = useStyles()
+
+  const { store } = props
 
   const drawerIconSelect = () => {
     props.onDrawerIconSelect()
@@ -67,8 +66,6 @@ const CarRentalAppBar = (props) => {
   const logoutSelect = () => {
     store.logout()
   }
-
-  const { store } = props
 
   return (
     <AppBar position="fixed" className={styles.appBar}>

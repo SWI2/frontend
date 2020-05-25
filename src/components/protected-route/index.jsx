@@ -6,9 +6,7 @@ import { withGlobalStore } from '../../store'
 const PrivateRoute = ({ store, children, ...rest }) => (
   <Route
     {...rest}
-    render={() =>
-      store.isLoggedIn ? children : <Redirect to="/" />
-    }
+    render={() => (store.isLoggedIn ? children : <Redirect to="/" />)}
   />
 )
 
