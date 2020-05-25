@@ -47,7 +47,7 @@ const LoginModal = ({ store, isOpen, handleClose }) => {
     event.preventDefault()
     try {
       await store.login(values)
-      history.push('/admin')
+      history.push('/admin/reservation')
       handleClose()
     } catch (error) {
       setShowWrongCredentials(true)

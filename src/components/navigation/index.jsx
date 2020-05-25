@@ -31,6 +31,7 @@ import AboutUs from '../../pages/about-us'
 import CarService from '../../pages/car-service'
 import LoginModal from '../login'
 import CarRentalAppBar from '../car-rental-appbar'
+import CarRentalDrawer from '../car-rental-drawer'
 
 const drawerWidth = 240
 
@@ -106,38 +107,13 @@ const Navigation = (props) => {
     setMobileOpen(!mobileOpen)
   }
 
-  const drawerItemSelected = (e) => {
-    console.log(e)
-  }
-
-  const drawer = (
-    <div>
-      <div className={styles.toolbar} />
-      <Divider />
-      <List>
-        <ListItem button onClick={drawerItemSelected}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Rezervace" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Vozidla" />
-        </ListItem>
-      </List>
-    </div>
-  )
-
   return (
     <>
       <Router>
         <div className={styles.root}>
           <CarRentalAppBar 
-            drawerIconSelect={handleDrawerToggle}
-            loginSelect={handleOpen}
+            onDrawerIconSelect={ handleDrawerToggle }
+            onLoginSelect={ handleOpen }
           />
           <Switch>
             <Route exact path="/car-service">
@@ -149,37 +125,14 @@ const Navigation = (props) => {
             <Route exact path="/car/:carId">
               <CarInfo />
             </Route>
-            <PrivateRoute exact path="/admin">
-              <nav className={styles.drawer} aria-label="mailbox folders">
-                <Hidden smUp implementation="css">
-                  <Drawer
-                    variant="temporary"
-                    anchor="left"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    classes={{
-                      paper: styles.drawerPaper,
-                    }}
-                    ModalProps={{
-                      keepMounted: true, // Better open performance on mobile.
-                    }}
-                  >
-                    {drawer}
-                  </Drawer>
-                </Hidden>
-                <Hidden xsDown implementation="css">
-                  <Drawer
-                    classes={{
-                      paper: styles.drawerPaper,
-                    }}
-                    variant="permanent"
-                    open
-                  >
-                    {drawer}
-                  </Drawer>
-                </Hidden>
-              </nav>
-              <ReservationList />
+            <PrivateRoute path="/admin">
+              <CarRentalDrawer 
+                mobileOpen={ mobileOpen }
+                onDrawerToggle={ handleDrawerToggle }
+              />
+              <PrivateRoute path="/reservations">
+                <ReservationList />
+              </PrivateRoute>
             </PrivateRoute>
             <Route exact path="/">
               <Home />
