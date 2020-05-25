@@ -1,44 +1,114 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import PersonIcon from '@material-ui/icons/Person'
-import LocalGasStationIcon from '@material-ui/icons/LocalGasStation'
-import SettingsIcon from '@material-ui/icons/Settings'
-import SpeedIcon from '@material-ui/icons/Speed'
 import { useParams } from 'react-router-dom'
 
+import { makeStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
 import { withGlobalStore } from '../../store'
-import ReservationForm from '../../components/reservation-form'
-import Jumbotron from '../../components/jumbotron'
-import IconWithText from '../../components/icon-with-text'
+import { drawerWidth } from '../../components/car-rental-drawer'
 
 const useStyles = makeStyles(theme => ({
-  carGrid: {
-    paddingTop: theme.spacing(5),
-  },
-  filtersContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-  },
-  carFeatures: {
-    'justifyContent': 'center',
-    'alignItems': 'center',
-    'display': 'flex',
-    '& > *:not(:first-child)': {
-      marginLeft: '1rem',
+  container: {
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: drawerWidth,
     },
+  },
+  title: {
+    padding: '10px'
+  },
+  root: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
   },
 }))
 
 const ReservationInfo = ({ store }) => {
   const styles = useStyles()
+
+  const [customerOpen, setCustomerOpen] = React.useState(true);
+  const onCustomerClick = () => {
+    setCustomerOpen(!customerOpen)
+  }
+
   const { reservationId } = useParams()
 
-  console.log('Tesr')
-
   return (
-    <p>Reservation {reservationId}</p>
+    <div className={ styles.container }>
+      <h1 className={ styles.title }>Detail rezervace {reservationId}</h1>
+      <List className={styles.root}>
+        {/* Customer */}
+        <ListItem 
+          button 
+          onClick={ onCustomerClick }
+        >
+          <ListItemText 
+              primary={`Robo Oravec`}
+              secondary={`Zákazník`}
+          />
+          { customerOpen ? <ExpandLess /> : <ExpandMore /> }
+        </ListItem>
+        <Collapse 
+          in={ customerOpen } 
+          timeout="auto" 
+          unmountOnExit
+        >
+          <List component="div" disablePadding>
+            <ListItem className={ styles.nested }>
+              <ListItemText 
+                  primary={`email@example.com`}
+                  secondary={`Email`}
+              />
+            </ListItem>
+            <ListItem className={ styles.nested }>
+              <ListItemText 
+                  primary={`+420 123 123 123`}
+                  secondary={`Phone`}
+              />
+            </ListItem>
+          </List>
+        </Collapse>
+        {/* Reservation info */}
+        <ListItem>
+          <ListItemText 
+              primary={`1.1.1970`}
+              secondary={`Datum od`}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemText 
+              primary={`1.1.1970`}
+              secondary={`Datum do`}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemText 
+              primary={`Robo`}
+              secondary={`Půjčil`}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemText 
+              primary={`Nikto`}
+              secondary={`Předal`}
+          />
+        </ListItem>
+        {/* Car */}
+        <ListItem>
+          <ListItemText 
+              primary={`Auto`}
+              secondary={`Auto`}
+          />
+        </ListItem>
+      </List>
+    </div>
   )
 }
 

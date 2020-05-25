@@ -16,9 +16,9 @@ export default function ReservationListItem(props) {
       button
       onClick={handleClick}
     >
-        <ListItemText 
-            primary={`Customer: ${customer.name}`}
-            secondary={`From: ${rent_date} To: ${return_date}`}
+        <ListItemText
+            primary={`Jméno zákazníka: ${customer.name}`}
+            secondary={`Od: ${rent_date} Do: ${return_date}`}
         />
     </ListItem>
   )

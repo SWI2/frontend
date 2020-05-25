@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: drawerWidth,
     },
   },
+  title: {
+    padding: '10px'
+  },
   root: {
     width: '100%',
     backgroundColor: theme.palette.background.paper,
@@ -30,7 +33,7 @@ const ReservationList = ({ store }) => {
 
   return (
     <div className={styles.container}>
-      <h1>Reservations</h1>
+      <h1 className={styles.title}>Reservations</h1>
       <div>
         {
           store.reservations 
