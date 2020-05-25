@@ -3,8 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { withGlobalStore } from '../../store'
 import ReservationListItem from '../../components/reservation-list-item'
 import List from '@material-ui/core/List'
-
-const drawerWidth = 240
+import { drawerWidth } from '../../components/car-rental-drawer'
 
 const useStyles = makeStyles(theme => ({
   container: {

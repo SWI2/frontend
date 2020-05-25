@@ -35,6 +35,8 @@ const ReservationInfo = ({ store }) => {
   const styles = useStyles()
   const { reservationId } = useParams()
 
+  console.log('Tesr')
+
   return (
     <p>Reservation {reservationId}</p>
   )

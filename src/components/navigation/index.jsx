@@ -1,38 +1,23 @@
 import {
   BrowserRouter as Router,
-  NavLink as RouterLink,
   Route,
   Switch,
 } from 'react-router-dom'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-import Button from '@material-ui/core/Button'
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import Divider from '@material-ui/core/Divider'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import ListItemText from '@material-ui/core/ListItemText'
-import Hidden from '@material-ui/core/Hidden'
-import Drawer from '@material-ui/core/Drawer'
 
 import { withGlobalStore } from '../../store'
 import Home from '../../pages/home'
 import ReservationList from '../../pages/reservation'
+import ReservationInfo from '../../pages/reservation-info'
 import PrivateRoute from '../protected-route'
 import CarInfo from '../../pages/car-info'
 import AboutUs from '../../pages/about-us'
 import CarService from '../../pages/car-service'
+
 import LoginModal from '../login'
 import CarRentalAppBar from '../car-rental-appbar'
 import CarRentalDrawer from '../car-rental-drawer'
-import NavigationPublicRoutes from '../navigation-public-routes'
 
 const drawerWidth = 240
 
@@ -129,14 +114,19 @@ const Navigation = (props) => {
             <Route exact path="/car/:carId">
               <CarInfo />
             </Route>
-            <PrivateRoute path="/admin">
+            <PrivateRoute exact path="/admin/reservation">
               <CarRentalDrawer 
                 mobileOpen={ mobileOpen }
                 onDrawerToggle={ handleDrawerToggle }
               />
-              <PrivateRoute path="/reservations">
-                <ReservationList />
-              </PrivateRoute>
+              <ReservationList />
+            </PrivateRoute>
+            <PrivateRoute exact path="/admin/reservation/:reservationId">
+              <CarRentalDrawer 
+                mobileOpen={ mobileOpen }
+                onDrawerToggle={ handleDrawerToggle }
+              />
+              <ReservationInfo />
             </PrivateRoute>
           </Switch>
         </div>

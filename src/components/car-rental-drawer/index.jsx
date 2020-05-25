@@ -13,44 +13,6 @@ import Drawer from '@material-ui/core/Drawer'
 export const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    paddingTop: '64px',
-    height: '100%',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  menuButton: {
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  logo: {
-    flexGrow: 0.2,
-  },
-  navigation: {
-    'flexGrow': 0.6,
-    'fontSize': theme.typography.h6.fontSize,
-    'fontWeight': theme.typography.h6.fontWeight,
-    '& > *': {
-      color: 'unset',
-      marginLeft: theme.spacing(5),
-    },
-  },
-  login: {
-    display: 'flex',
-    flexGrow: 0.2,
-    justifyContent: 'flex-end',
-  },
-  logout: {
-    display: 'flex',
-    flexGrow: 0.2,
-    justifyContent: 'flex-end',
-    marginLeft: 'auto',
-  },
-  linkSelected: {
-    textDecoration: 'underline',
-  },
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
@@ -65,8 +27,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CarRentalDrawer = (props) => {
-
-  console.log(`Mobile open: ${props.mobileOpen}`)
 
   const styles = useStyles()
 

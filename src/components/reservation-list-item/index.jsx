@@ -8,7 +8,7 @@ export default function ReservationListItem(props) {
   const history = useHistory()
 
   function handleClick() {
-    history.push(`/reservation/${id}`)
+    history.push(`reservation/${id}`)
   }
 
   return (
