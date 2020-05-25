@@ -30,6 +30,7 @@ import CarInfo from '../../pages/car-info'
 import AboutUs from '../../pages/about-us'
 import CarService from '../../pages/car-service'
 import LoginModal from '../login'
+import CarRentalAppBar from '../car-rental-appbar'
 
 const drawerWidth = 240
 
@@ -85,7 +86,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Navigation = ({ store }) => {
+const Navigation = (props) => {
+
+  const { store } = props
+
   const styles = useStyles()
   const [isOpen, setOpen] = useState(false)
   const handleOpen = () => {
@@ -131,68 +135,10 @@ const Navigation = ({ store }) => {
     <>
       <Router>
         <div className={styles.root}>
-          <AppBar position="fixed" className={styles.appBar}>
-            <Toolbar>
-              {store.isLoggedIn && (
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  className={styles.menuButton}
-                >
-                  <MenuIcon />
-                </IconButton>
-              )}
-              <div className={styles.logo}>
-                <Typography variant="h6">LOGO</Typography>
-              </div>
-              {!store.isLoggedIn && (
-                <>
-                  <nav className={styles.navigation}>
-                    <Link
-                      activeClassName={styles.linkSelected}
-                      component={RouterLink}
-                      to="/"
-                      exact
-                    >
-                      Domov
-                    </Link>
-
-                    <Link
-                      activeClassName={styles.linkSelected}
-                      component={RouterLink}
-                      to="/car-service"
-                      exact
-                    >
-                      Autopožičovňa
-                    </Link>
-
-                    <Link
-                      activeClassName={styles.linkSelected}
-                      component={RouterLink}
-                      to="/about"
-                      exact
-                    >
-                      O nás
-                    </Link>
-                  </nav>
-                  <div className={styles.login}>
-                    <Button color="inherit" onClick={handleOpen}>
-                      Prihlásiť sa
-                    </Button>
-                  </div>
-                </>
-              )}
-              {store.isLoggedIn && (
-                <div className={styles.logout}>
-                  <Button color="inherit" onClick={() => store.logout()}>
-                    Odhlásiť sa
-                  </Button>
-                </div>
-              )}
-            </Toolbar>
-          </AppBar>
+          <CarRentalAppBar 
+            drawerIconSelect={handleDrawerToggle}
+            loginSelect={handleOpen}
+          />
           <Switch>
             <Route exact path="/car-service">
               <CarService />
