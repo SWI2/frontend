@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import DescriptionIcon from '@material-ui/icons/Description'
 import Collapse from '@material-ui/core/Collapse'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
@@ -29,15 +31,23 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ReservationInfo = () => {
+const ReservationInfo = props => {
   const styles = useStyles()
+  const { reservationId } = useParams()
+  const { store } = props
+
+  if (store.reservations === null) return 'Loading'
+
+  const reservation = store.reservations.find(
+    element => element.id === Number(reservationId)
+  )
+
+  if (!reservation) return 'Reservation not found'
 
   const [customerOpen, setCustomerOpen] = React.useState(true)
   const onCustomerClick = () => {
     setCustomerOpen(!customerOpen)
   }
-
-  const { reservationId } = useParams()
 
   return (
     <div className={styles.container}>
@@ -45,36 +55,56 @@ const ReservationInfo = () => {
       <List className={styles.root}>
         {/* Customer */}
         <ListItem button onClick={onCustomerClick}>
-          <ListItemText primary="Robo Oravec" secondary="Zákazník" />
+          <ListItemText
+            primary={reservation.customer.name}
+            secondary="Zákazník"
+          />
           {customerOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={customerOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem className={styles.nested}>
-              <ListItemText primary="email@example.com" secondary="Email" />
+              <ListItemText
+                primary={reservation.customer.email}
+                secondary="Email"
+              />
             </ListItem>
             <ListItem className={styles.nested}>
-              <ListItemText primary="+420 123 123 123" secondary="Phone" />
+              <ListItemText
+                primary={reservation.customer.phone}
+                secondary="Telefón"
+              />
             </ListItem>
           </List>
         </Collapse>
         {/* Reservation info */}
         <ListItem>
-          <ListItemText primary="1.1.1970" secondary="Datum od" />
+          <ListItemText primary={reservation.rent_date} secondary="Datum od" />
         </ListItem>
         <ListItem>
-          <ListItemText primary="1.1.1970" secondary="Datum do" />
+          <ListItemText
+            primary={reservation.return_date}
+            secondary="Datum do"
+          />
         </ListItem>
         <ListItem>
-          <ListItemText primary="Robo" secondary="Půjčil" />
+          <ListItemText primary="Not implemented" secondary="Půjčil" />
         </ListItem>
         <ListItem>
-          <ListItemText primary="Nikto" secondary="Předal" />
+          <ListItemText primary="Nikto" secondary="Not implemented" />
         </ListItem>
         {/* Car */}
         <ListItem>
-          <ListItemText primary="Auto" secondary="Auto" />
+          <ListItemText primary={reservation.car.model.name} secondary="Auto" />
         </ListItem>
+        {reservation.files.map(file => (
+          <ListItem button key={file.id}>
+            <ListItemIcon>
+              <DescriptionIcon />
+            </ListItemIcon>
+            <ListItemText primary={file.name} />
+          </ListItem>
+        ))}
       </List>
     </div>
   )
