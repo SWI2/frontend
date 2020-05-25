@@ -32,6 +32,7 @@ import CarService from '../../pages/car-service'
 import LoginModal from '../login'
 import CarRentalAppBar from '../car-rental-appbar'
 import CarRentalDrawer from '../car-rental-drawer'
+import NavigationPublicRoutes from '../navigation-public-routes'
 
 const drawerWidth = 240
 
@@ -116,6 +117,9 @@ const Navigation = (props) => {
             onLoginSelect={ handleOpen }
           />
           <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
             <Route exact path="/car-service">
               <CarService />
             </Route>
@@ -134,9 +138,6 @@ const Navigation = (props) => {
                 <ReservationList />
               </PrivateRoute>
             </PrivateRoute>
-            <Route exact path="/">
-              <Home />
-            </Route>
           </Switch>
         </div>
         <LoginModal isOpen={isOpen} handleClose={handleClose} />
