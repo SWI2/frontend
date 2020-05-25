@@ -24,7 +24,7 @@ import Drawer from '@material-ui/core/Drawer'
 
 import { withGlobalStore } from '../../store'
 import Home from '../../pages/home'
-import ReservationList from '../../pages/reservation-list'
+import ReservationList from '../../pages/reservation'
 import PrivateRoute from '../protected-route'
 import CarInfo from '../../pages/car-info'
 import AboutUs from '../../pages/about-us'
