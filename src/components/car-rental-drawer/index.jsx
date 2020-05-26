@@ -8,6 +8,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox'
 import ListItemText from '@material-ui/core/ListItemText'
 import Hidden from '@material-ui/core/Hidden'
 import Drawer from '@material-ui/core/Drawer'
+import { useHistory } from 'react-router-dom'
 
 export const drawerWidth = 240
 
@@ -27,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 const CarRentalDrawer = props => {
   const styles = useStyles()
+  const history = useHistory()
 
   const { mobileOpen } = props
 
@@ -43,9 +45,12 @@ const CarRentalDrawer = props => {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Rezervace" />
+          <ListItemText
+            primary="Rezervace"
+            onClick={() => history.push('/admin/reservation')}
+          />
         </ListItem>
-        <ListItem button>
+        <ListItem button disabled>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
