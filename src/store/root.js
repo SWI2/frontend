@@ -43,7 +43,7 @@ class Root {
   @action
   logout() {
     this.isLoggedIn = false
-    this.alerts.alerts.push({
+    this.alerts.push({
       message: 'Boli ste úspešne odhlásení.',
     })
   }
