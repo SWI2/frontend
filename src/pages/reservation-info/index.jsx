@@ -9,6 +9,7 @@ import DescriptionIcon from '@material-ui/icons/Description'
 import Collapse from '@material-ui/core/Collapse'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
+import dayjs from 'dayjs'
 
 import { withGlobalStore } from '../../store'
 import { drawerWidth } from '../../components/car-rental-drawer'
@@ -79,11 +80,14 @@ const ReservationInfo = props => {
         </Collapse>
         {/* Reservation info */}
         <ListItem>
-          <ListItemText primary={reservation.rent_date} secondary="Datum od" />
+          <ListItemText
+            primary={dayjs(reservation.rent_date).format('MM/DD/YYYY HH:MM')}
+            secondary="Datum od"
+          />
         </ListItem>
         <ListItem>
           <ListItemText
-            primary={reservation.return_date}
+            primary={dayjs(reservation.return_date).format('MM/DD/YYYY HH:MM')}
             secondary="Datum do"
           />
         </ListItem>
