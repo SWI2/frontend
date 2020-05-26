@@ -10,6 +10,8 @@ class Root {
 
   @observable alerts = new Alerts()
 
+  @observable reservations = null
+
   @observable token = null
 
   constructor() {
@@ -25,9 +27,8 @@ class Root {
 
   @action
   async login({ email, password }) {
-    // login action here
     const {
-      data: { token },
+      data: { data },
     } = await apiRequest('/jwt', {
       method: 'POST',
       body: {
@@ -35,14 +36,12 @@ class Root {
         password,
       },
     })
-
     this.isLoggedIn = true
-    this.token = token
+    this.token = data.token
   }
 
   @action
   logout() {
-    // logout action here
     this.isLoggedIn = false
     this.alerts.alerts.push({
       message: 'Boli ste úspešne odhlásení.',
@@ -58,6 +57,17 @@ class Root {
 
   async reserveCar(payload) {
     await apiRequest('/reservation', { method: 'POST', body: payload })
+  }
+
+  async loadReservations() {
+    if (!this.isLoggedIn) return
+
+    const {
+      data: { data },
+    } = await apiRequest('/reservation', {
+      headers: { Authorization: `Bearer ${this.token}` },
+    })
+    this.reservations = data
   }
 }
 
