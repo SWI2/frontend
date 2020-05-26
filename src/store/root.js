@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import downloadjs from 'downloadjs'
 
 import apiRequest from '../api'
 import Alerts from './alerts'
@@ -68,6 +69,17 @@ class Root {
       headers: { Authorization: `Bearer ${this.token}` },
     })
     this.reservations = data
+  }
+
+  async downloadPdf(id, name) {
+    const { data } = await apiRequest(
+      'https://www.jianjunchen.com/papers/CORS-USESEC18.slides.pdf'
+    )
+    // Replace with this code
+    // const { data } = await apiRequest(`/file/${id}`, {
+    //   headers: { Authorization: `Bearer ${this.token}` },
+    // })
+    downloadjs(data, name, 'application/pdf')
   }
 }
 

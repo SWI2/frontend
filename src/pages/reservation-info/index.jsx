@@ -102,7 +102,11 @@ const ReservationInfo = props => {
           <ListItemText primary={reservation.car.model.name} secondary="Auto" />
         </ListItem>
         {reservation.files.map(file => (
-          <ListItem button key={file.id}>
+          <ListItem
+            key={file.id}
+            button
+            onClick={() => store.downloadPdf(file.id, file.name)}
+          >
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>

@@ -11,6 +11,7 @@
     "@material/data-table": "^6.0.0",
     "customize-cra": "^0.9.1",
     "dayjs": "^1.8.27",
+    "downloadjs": "^1.4.7",
     "history": "^4.10.1",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
