@@ -75,11 +75,9 @@ const ReservationForm = ({ images, carId, store }) => {
   }
 
   const handleChange = prop => event => {
-    if (prop === 'from' || prop === 'to') {
+    if (prop === 'from' || prop === 'to')
       setValues({ ...values, [prop]: event.toISOString() })
-    } else {
-      setValues({ ...values, [prop]: event.target?.value })
-    }
+    else setValues({ ...values, [prop]: event.target?.value })
   }
 
   return (
