@@ -45,7 +45,7 @@ const ReservationInfo = props => {
 
   if (!reservation) return 'Reservation not found'
 
-  const [customerOpen, setCustomerOpen] = React.useState(true)
+  const [customerOpen, setCustomerOpen] = React.useState(false)
   const onCustomerClick = () => {
     setCustomerOpen(!customerOpen)
   }
@@ -102,7 +102,11 @@ const ReservationInfo = props => {
           <ListItemText primary={reservation.car.model.name} secondary="Auto" />
         </ListItem>
         {reservation.files.map(file => (
-          <ListItem button key={file.id}>
+          <ListItem
+            key={file.id}
+            button
+            onClick={() => store.downloadPdf(file.id, file.name)}
+          >
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
