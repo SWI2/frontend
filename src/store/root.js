@@ -72,14 +72,10 @@ class Root {
   }
 
   async downloadPdf(id, name) {
-    const { data } = await apiRequest(
-      'https://www.jianjunchen.com/papers/CORS-USESEC18.slides.pdf'
-    )
-    // Replace with this code
-    // const { data } = await apiRequest(`/file/${id}`, {
-    //   headers: { Authorization: `Bearer ${this.token}` },
-    // })
-    downloadjs(data, name, 'application/pdf')
+    const { data } = await apiRequest(`/file/${id}`, {
+      headers: { Authorization: `Bearer ${this.token}` },
+    })
+    downloadjs(data, name)
   }
 }
 
