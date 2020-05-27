@@ -45,7 +45,7 @@ const ReservationInfo = props => {
 
   if (!reservation) return 'Reservation not found'
 
-  const [customerOpen, setCustomerOpen] = React.useState(true)
+  const [customerOpen, setCustomerOpen] = React.useState(false)
   const onCustomerClick = () => {
     setCustomerOpen(!customerOpen)
   }

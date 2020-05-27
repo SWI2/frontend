@@ -60,7 +60,7 @@ const ReservationForm = ({ images, carId, store }) => {
       .add(7, 'day')
       .toISOString(),
     note: '',
-    card_id: Number(carId),
+    car_id: Number(carId),
   })
 
   const handleSubmit = async event => {
